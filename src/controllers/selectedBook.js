@@ -16,7 +16,8 @@ async function book(req, res){
             authors:data.volumeInfo.authors,
             pageCount:data.volumeInfo.pageCount,
             language:data.volumeInfo.language,
-            publisher:data.volumeInfo.publisher
+            publisher:data.volumeInfo.publisher,
+            publishedDate:data.volumeInfo.publishedDate,
         }
 
         return res.render('selected-book',bookInfo)

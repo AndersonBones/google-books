@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <meta charset="UTF-8">
-    <title>Page Title</title>
+    <title>Selected Book</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
@@ -10,24 +10,29 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <style>
+        body{
+            background: #000000;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
         .container{
             height: 100vh;
             display: flex;
             justify-content: center;
-            background-image: url('https://www.spescoladeteatro.org.br/wp-content/uploads/2020/05/books.jpg');
+            background-image: url('https://wallpaperaccess.com/full/124383.jpg');
             background-position: center;
             background-repeat: no-repeat;
-  
             background-size: cover;
         }
         .Info-book{
             background-color: rgba(255, 255, 255, 0.678);
             border-radius: 5px;
-            width: 500px;
+            width: 520px;
 
-            max-height: 95vh;
+            max-height: 90vh;
             margin:auto;
         }
+        
 
         .header-book span{
             font-weight: 600;
@@ -39,7 +44,9 @@
 
         #toggle-caption{
             font-size: .8rem;
-            padding: 5px !important;
+            font-weight: 700 !important;
+            border: none;
+            background-color: transparent;
             display: flex;
             gap: 5px;
 
@@ -50,41 +57,53 @@
 
             margin-top: 10px;
         }
+
+        .thumbnail-book{
+            width: 35%;
+        }
+
+        .thumbnail-book img{
+            width: 100%;
+        }
+
+        .body-book{
+            gap: 1rem;
+        }
     </style>
 
     <body>
 
-        <div class="container p-2">
-            <div class="Info-book d-flex flex-column align-items-center justify-content-center ">
+        <div class="container p-3 ">
+            <div class="Info-book d-flex flex-column align-items-center p-3 justify-content-center ">
 
                 <div class="header-book p-2 mb-4 ">
                     <span>{{title}}</span>
                 </div>
 
-                <div class="body-book d-flex w-100 justify-content-around mb-4">
-                    <div class="thumbnail-book ">
+                <div class="body-book d-flex justify-content-center align-items-center mb-4">
+                    <div class="thumbnail-book rounded-1 overflow-hidden">
                         <img src="{{thumbnail}}" alt="">
                     </div>
     
                     <div class="volumeInfo d-flex flex-column">
                         <span><b>Page Count:</b> {{pageCount}}</span>
-                        <span><b>Language:</b> {{laguange}}</span>
-                        <span><b>Authors:</b> {{authors}}</span>
-                        <span><b>Publisher:</b>{{publisher}}</span>
+                        <span><b>Language:</b> {{language}}</span>
+                        <span><b>Authors:</b> {{#authors}}
+                                {{authors}}
+                            {{/authors}}
+                        </span>
+                        <span><b>Publisher:</b> {{publisher}}</span>
+                        <span><b>Published Date:</b> {{publishedDate}}</span>
                     </div>
                 </div>
 
-                <div class="description-book overflow-auto w-100 p-2">
-                    <h2>Description</h2>
+                <h2 class="text-left w-100">Description</h2>
 
-                    <p id="displayed-content"></p>
-
+                <div class="description-book overflow-auto w-100 ">
+                    <span id="displayed-content">{{description}}</span>
                     <span id="hidden-content"></span>
 
-    
-                    <button id="toggle-caption" type="button" class="btn btn-primary bi bi-chevron-down">Show more</button>
-
-                    <span style="display: none;" id="desc-book">{{description}}</span>
+                    <button id="toggle-caption" type="button">Show more</button>
                 </div>
                 
             </div>
@@ -93,9 +112,8 @@
         <script>
             let descArea = document.querySelector('.description-book');
             let content_displayed = document.querySelector("#displayed-content");
-            let desc = document.querySelector('#desc-book');
-            
             let content_hidden = document.querySelector('#hidden-content');
+            let desc_text = content_displayed.innerText;
             $(content_hidden).hide();
 
             
@@ -118,31 +136,22 @@
 
                 return text.substring(index, text.length)
             }
-           
-            content_displayed.innerHTML = setContentDisplayed(desc.innerText);
-            content_hidden.innerHTML = setContentHidden(desc.innerText);
+
+            content_displayed.innerHTML = setContentDisplayed(desc_text);
+            content_hidden.innerHTML = setContentHidden(desc_text);
             
             document.querySelector('#toggle-caption').addEventListener("click",()=>{
-                $("#toggle-caption").toggleClass('bi-chevron-down')
-                $("#toggle-caption").toggleClass('bi-chevron-up')
 
-                $(content_hidden).fadeToggle('fast',()=>{
-
-                    if(document.querySelector("#toggle-caption").innerHTML == 'Show more'){
+                $(content_hidden).fadeToggle('fast');
+                if(document.querySelector("#toggle-caption").innerHTML == 'Show more'){
                         document.querySelector("#toggle-caption").innerHTML = 'Show less'
                     }
 
-                    else if (document.querySelector("#toggle-caption").innerHTML == 'Show less'){
-                        document.querySelector("#toggle-caption").innerHTML = 'Show more'
-                    }
+                else if (document.querySelector("#toggle-caption").innerHTML == 'Show less'){
+                    document.querySelector("#toggle-caption").innerHTML = 'Show more'
+                }
         
-                });
-
-                
-                
-                
             })
-
 
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>

@@ -1,0 +1,108 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.main-area{
+    width: 100%;
+    height: 400px;
+    position: relative;
+}
+
+.main-area img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    filter: brightness(60%);
+}
+
+.search-area{
+    width: 50% !important;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.search-area h1{
+    font-size: 3.5rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.search--component{
+    display: flex;
+}
+
+.search--component #form1{
+    border-radius: 0 !important;
+    border-start-start-radius: 5px !important;
+    border-end-start-radius: 5px !important;
+}
+
+.search--component #search-btn{
+    border-radius: 0 !important;
+    border-end-end-radius: 5px !important;
+    border-start-end-radius: 5px !important;
+}
+
+
+.search-results{
+    display: flex;
+    justify-content: center;    
+    gap: 15px;
+}
+
+.search-results input{
+    width: 100px;
+    border: none;
+    outline: none;
+}
+
+.search-results label{
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+#title{
+    font-size: .9rem;
+}
+
+.books-area{
+    width: 70%;
+    display: flex;
+    align-items: center;
+    margin: 50px auto !important;
+}
+
+.books-area .book-item {
+    margin-bottom: 20px;
+}
+
+.books-area .book-item .thumbnail{
+    width: 70%;
+}
+
+.books-area .book-item .thumbnail img{
+    width: 100%;
+    
+
+    object-fit: cover;
+}
+
+.loading-animate{
+    visibility: hidden;
+    transition: .3s ease;
+}
+
+.loading-active{
+    visibility: visible;
+}

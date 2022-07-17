@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <style>
+        .container{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            background-image: url('https://www.spescoladeteatro.org.br/wp-content/uploads/2020/05/books.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+  
+            background-size: cover;
+        }
+        .Info-book{
+            background-color: rgba(255, 255, 255, 0.678);
+            border-radius: 5px;
+            width: 500px;
+
+            max-height: 95vh;
+            margin:auto;
+        }
+
+        .header-book span{
+            font-weight: 600;
+            font-size: 1.3rem;
+        }
+        .volumeInfo{
+            gap: 2px;
+        }
+
+        #toggle-caption{
+            font-size: .8rem;
+            padding: 5px !important;
+            display: flex;
+            gap: 5px;
+
+            align-items: center;
+            justify-content: center;
+
+            flex-direction: row-reverse;
+
+            margin-top: 10px;
+        }
+    </style>
+
+    <body>
+
+        <div class="container p-2">
+            <div class="Info-book d-flex flex-column align-items-center justify-content-center ">
+
+                <div class="header-book p-2 mb-4 ">
+                    <span>{{title}}</span>
+                </div>
+
+                <div class="body-book d-flex w-100 justify-content-around mb-4">
+                    <div class="thumbnail-book ">
+                        <img src="{{thumbnail}}" alt="">
+                    </div>
+    
+                    <div class="volumeInfo d-flex flex-column">
+                        <span><b>Page Count:</b> {{pageCount}}</span>
+                        <span><b>Language:</b> {{laguange}}</span>
+                        <span><b>Authors:</b> {{authors}}</span>
+                        <span><b>Publisher:</b>{{publisher}}</span>
+                    </div>
+                </div>
+
+                <div class="description-book overflow-auto w-100 p-2">
+                    <h2>Description</h2>
+
+                    <p id="displayed-content"></p>
+
+                    <span id="hidden-content"></span>
+
+    
+                    <button id="toggle-caption" type="button" class="btn btn-primary bi bi-chevron-down">Show more</button>
+
+                    <span style="display: none;" id="desc-book">{{description}}</span>
+                </div>
+                
+            </div>
+        </div>
+
+        <script>
+            let descArea = document.querySelector('.description-book');
+            let content_displayed = document.querySelector("#displayed-content");
+            let desc = document.querySelector('#desc-book');
+            
+            let content_hidden = document.querySelector('#hidden-content');
+            $(content_hidden).hide();
+
+            
+            function setContentDisplayed(text){
+
+                let index = text.indexOf('<br>');
+
+                if(index == -1){
+                    index = text.indexOf('.')+1;
+                }
+                return text.substring(0, index);
+            }
+
+            function setContentHidden(text){
+                let index = text.indexOf('<br>');
+
+                if(index == -1){
+                    index = text.indexOf('.')+2;
+                }
+
+                return text.substring(index, text.length)
+            }
+           
+            content_displayed.innerHTML = setContentDisplayed(desc.innerText);
+            content_hidden.innerHTML = setContentHidden(desc.innerText);
+            
+            document.querySelector('#toggle-caption').addEventListener("click",()=>{
+                $("#toggle-caption").toggleClass('bi-chevron-down')
+                $("#toggle-caption").toggleClass('bi-chevron-up')
+
+                $(content_hidden).fadeToggle('fast',()=>{
+
+                    if(document.querySelector("#toggle-caption").innerHTML == 'Show more'){
+                        document.querySelector("#toggle-caption").innerHTML = 'Show less'
+                    }
+
+                    else if (document.querySelector("#toggle-caption").innerHTML == 'Show less'){
+                        document.querySelector("#toggle-caption").innerHTML = 'Show more'
+                    }
+        
+                });
+
+                
+                
+                
+            })
+
+
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+     
+    </body> 
+</html>
+

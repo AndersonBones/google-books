@@ -1,0 +1,23 @@
+
+@media only screen and (max-width: 992px) {
+    .search-area{
+        width: 60% !important;
+    }    
+
+}
+
+@media only screen and (max-width: 768px) {
+    .search-area{
+        width: 70% !important;
+    }    
+}
+
+@media only screen and (max-width: 576px) {
+    .search-area{
+        width: 80% !important;
+    }
+    
+    .search-area h1{
+        font-size: 2.6rem;
+    }
+}

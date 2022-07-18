@@ -25,12 +25,14 @@
             background-size: cover;
         }
         .Info-book{
-            background-color: rgba(255, 255, 255, 0.678);
+            background-color: rgba(255, 255, 255, 0.705);
             border-radius: 5px;
             width: 520px;
 
             max-height: 90vh;
             margin:auto;
+
+            box-shadow: 5px 5px 20px black;
         }
         
 
@@ -40,6 +42,10 @@
         }
         .volumeInfo{
             gap: 2px;
+        }
+
+        .volumeInfo span{
+            font-size: .8rem;
         }
 
         #toggle-caption{
@@ -57,11 +63,6 @@
 
             margin-top: 10px;
         }
-
-        .thumbnail-book{
-            width: 35%;
-        }
-
         .thumbnail-book img{
             width: 100%;
         }
@@ -80,18 +81,15 @@
                     <span>{{title}}</span>
                 </div>
 
-                <div class="body-book d-flex justify-content-center align-items-center mb-4">
-                    <div class="thumbnail-book rounded-1 overflow-hidden">
+                <div class="body-book w-100 d-flex justify-content-center align-items-center mb-4">
+                    <div class="thumbnail-book w-40 rounded-1 overflow-hidden">
                         <img src="{{thumbnail}}" alt="">
                     </div>
     
-                    <div class="volumeInfo d-flex flex-column">
+                    <div class="volumeInfo w-60 d-flex flex-column">
                         <span><b>Page Count:</b> {{pageCount}}</span>
                         <span><b>Language:</b> {{language}}</span>
-                        <span><b>Authors:</b> {{#authors}}
-                                {{authors}}
-                            {{/authors}}
-                        </span>
+                        <span><b>Authors:</b> {{authors}}</span>
                         <span><b>Publisher:</b> {{publisher}}</span>
                         <span><b>Published Date:</b> {{publishedDate}}</span>
                     </div>

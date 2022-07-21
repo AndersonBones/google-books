@@ -3,6 +3,9 @@ const mustache = require("mustache-express");
 const path = require("path");
 const MyRoutes = require("./routes/routes");
 const cors = require("cors");
+const dotenv = require('dotenv')
+
+dotenv.config();
 
 var corsOptions = {
     origin: 'http://localhost:3000',
@@ -26,6 +29,7 @@ server.use(MyRoutes);
 server.use((req, res)=>{
     res.render('404')
 })
-server.listen(3000, ()=>{
-    console.log('Server running...')
-})
+
+app.listen(process.env.PORT || 3000, function(){
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+  });

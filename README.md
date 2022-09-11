@@ -15,4 +15,4 @@ Retorna informações sobre o livro desejado
 <img src="/public/images/screen.gif" alt="">
 
 ### Demo
-<a href="https://dry-beyond-56031.herokuapp.com/">Live Demo</a>
+<a href="https://google-bo0ks.herokuapp.com/">Live Demo</a>
